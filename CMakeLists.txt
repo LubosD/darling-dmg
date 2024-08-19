@@ -1,6 +1,10 @@
+cmake_minimum_required(VERSION 3.13)
+cmake_policy(SET CMP0167 NEW)
 project(darling-dmg)
 
-cmake_minimum_required(VERSION 3.13)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(dmg_sources
 	src/unichar.cpp
@@ -41,7 +45,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 	"${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/")
 
 add_definitions(-D_FILE_OFFSET_BITS=64)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -ggdb -O0")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb -O0")
 
 include(FindLibXml2)
 
@@ -124,7 +128,7 @@ else (NOT DARLING)
 		${FUSE_INCLUDE_DIRS}
 	)
 
-	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -nostdinc")
+	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -nostdinc")
 
 	wrap_elf(fuse libfuse.so)
 
